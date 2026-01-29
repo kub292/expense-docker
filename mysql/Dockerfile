@@ -4,6 +4,4 @@ ENV MYSQL_USER=expense
 ENV MYSQL_PASSWORD=ExpenseApp@1 
 ENV MYSQL_DATABASE=transactions
 COPY scripts/*.sql /docker-entrypoint-initdb.d/
-EXPOSE 3306
-CMD ["mysqld"]
 CMD ["sleep", "1000"]
