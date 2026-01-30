@@ -1,12 +1,11 @@
--- Database already created by MYSQL_DATABASE env var
 USE `transactions`;
 
 CREATE TABLE IF NOT EXISTS `expense_transactions` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `id` INT NOT NULL AUTO_INCREMENT,
     `amount` INT NOT NULL,
-    `description` VARCHAR(255)
+    `description` VARCHAR(255),
+    PRIMARY KEY (`id`)
 );
 
--- User already created by MYSQL_USER env var
 GRANT ALL PRIVILEGES ON `transactions`.* TO 'expense'@'%';
 FLUSH PRIVILEGES;
