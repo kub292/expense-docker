@@ -1,25 +1,32 @@
 version: '3.8'
 name: expense
+
 networks:
   default:
     name: expense
+
 services:
   mysql:
-    image: mysql:v1.0.0
-    container_name: mysql # --name mysql
+    image: mysql:8.0
+    container_name: mysql
+
   backend:
-   build:
-    context: ./backend
-    dockerfile: Dockerfile
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     image: backend:v1.0.0
-    container_name: backend # --name backend
-    command: sh, -c  "sleep 20 && node /opt/server/index.js" 
+    container_name: backend
+    command: sh -c "sleep 20 && node /opt/server/index.js"
     depends_on:
-    - mysql
+      - mysql
+
   frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     image: frontend:v1.0.0
-    container_name: frontend # --name frontend
-    depends_on: 
-    - backend
+    container_name: frontend
+    depends_on:
+      - backend
     ports:
-    - "80:80"
+      - "80:80"
