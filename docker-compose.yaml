@@ -4,21 +4,20 @@ networks:
   default:
     name: expense
 
+volumes:
+  mysql-data:
+
 services:
   mysql:
     image: mysql:8.0
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: Root@123
-      MYSQL_DATABASE: expense_db
-      MYSQL_USER: expense
-      MYSQL_PASSWORD: ExpenseApp@1
-    ports:
-      - "3306:3306"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: transactions
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./backend/schema:/docker-entrypoint-initdb.d
-
+    ports:
+      - "3306:3306"
 
   backend:
     build:
@@ -26,7 +25,7 @@ services:
       dockerfile: Dockerfile
     image: backend:v1.0.0
     container_name: backend
-    command: sh -c "sleep 20 && node /opt/server/index.js"
+    command: sh -c "node /opt/server/index.js"
     depends_on:
       mysql:
         condition: service_started
@@ -42,4 +41,3 @@ services:
         condition: service_started
     ports:
       - "80:80"
-
