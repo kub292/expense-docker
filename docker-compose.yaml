@@ -8,6 +8,17 @@ services:
   mysql:
     image: mysql:8.0
     container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Root@123
+      MYSQL_DATABASE: expense_db
+      MYSQL_USER: expense
+      MYSQL_PASSWORD: ExpenseApp@1
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./backend/schema:/docker-entrypoint-initdb.d
+
 
   backend:
     build:
