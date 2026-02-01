@@ -9,6 +9,9 @@ volumes:
 
 services:
   mysql:
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: transactions
     image: mysql:8.0
     container_name: mysql
     environment:
@@ -20,6 +23,11 @@ services:
       - "3306:3306"
 
   backend:
+  environment:
+    DB_HOST: mysql
+    DB_USER: root
+    DB_PASSWORD: root
+    DB_NAME: transactions
     build:
       context: ./backend
       dockerfile: Dockerfile
