@@ -9,9 +9,6 @@ volumes:
 
 services:
   mysql:
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: transactions
     image: mysql:8.0
     container_name: mysql
     environment:
