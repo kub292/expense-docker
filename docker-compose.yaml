@@ -12,7 +12,7 @@ services:
     image: mysql:8.0
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ExpenseApp@1
       MYSQL_DATABASE: transactions
     volumes:
       - mysql-data:/var/lib/mysql
